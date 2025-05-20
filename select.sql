@@ -82,3 +82,59 @@ SELECT * FROM students
 
 SELECT * FROM students
      WHERE age > 20;
+
+
+
+/*
+     @Scalar function
+UPPER() converts a string to uppercase
+LOWER() converts a string to lowercase
+CONCAT() concatenate two or more strings
+LENGTH() returns the number of characters in a string
+
+
+     @Aggregate Functions
+AVG()calculate the average of a set of values
+MAX() returns the max value in a set
+MIN() returns the minimum value in a set
+SUM() calculates the sum of values in a set
+COUNT() counts the number of rows in a set
+
+*/
+
+-- proti row ar jonno 1 bar call korbe and 1 data dibe
+
+SELECT upper(first_name) FROM students;
+SELECT lower(first_name) FROM students;
+SELECT concat(first_name, ' ', last_name) FROM students;
+SELECT length(first_name) FROM students;
+
+
+-- multiple rows ar upor akta opration kore 1 ta data dibe
+
+SELECT avg(age) FROM students;
+SELECT max(age) FROM students;
+SELECT min(age) FROM students;
+SELECT sum(age) FROM students;
+SELECT count(*) FROM students;
+
+
+
+-- table a nullable data ar jonno query 
+
+SELECT * FROM students
+     WHERE email = NULL -- ❌ ai vabe kora jabe na karon null ar shate jai kichu kori na kno se null e return korbe. tai ata onno vabe handle korte hobe
+
+ 
+-----  handle nullable field -----
+
+-- jei email gula null na sei gula dibe
+SELECT * FROM students
+     WHERE email IS NOT NULL;
+
+-- jei email gula null sei gula dibe
+SELECT * FROM students
+     WHERE email IS NULL;
+
+-- null field a akta default value set kora
+SELECT COALESCE(email, '--Email not provided--') FROM students
